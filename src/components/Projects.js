@@ -18,7 +18,7 @@ const Projects = () => {
 
   return (
     <div>
-      <h2>Projects</h2>
+      <h2>Add your Mini Projects</h2>
       <input name="projectName" placeholder="Project Name" value={form.projectName} onChange={handleChange} />
       <input name="techStack" placeholder="Tech Stack" value={form.techStack} onChange={handleChange} />
       <input name="description" placeholder="Description" value={form.description} onChange={handleChange} />
