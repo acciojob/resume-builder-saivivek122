@@ -14,7 +14,7 @@ const Profile = () => {
 
   return (
     <div>
-      <h2>Profile</h2>
+      <h2>Add your profile details</h2>
       <input name="fname" placeholder="First Name" value={form.fname || ""} onChange={handleChange} />
       <input name="lname" placeholder="Last Name" value={form.lname || ""} onChange={handleChange} />
       <input name="phone" placeholder="Phone" value={form.phone || ""} onChange={handleChange} />
