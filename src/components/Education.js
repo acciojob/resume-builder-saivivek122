@@ -21,7 +21,13 @@ const Education = () => {
       <input name="completionYear" data-testid="completionYear-input" placeholder="Completion Year" value={form.completionYear} onChange={handleChange} />
       <input name="college" data-testid="college-input" placeholder="College" value={form.college} onChange={handleChange} />
       <input name="percentage" data-testid="percentage-input" placeholder="Percentage" value={form.percentage} onChange={handleChange} />
-      <button id="add_education" onClick={handleAdd}>Add Education</button>
+     <button
+  id="add_education"
+  className="MuiButton-contained"
+  onClick={handleAdd}
+>
+  Add Education
+</button>
 
       <ul>
         {education.map((edu, i) => (
