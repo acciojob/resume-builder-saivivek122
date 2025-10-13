@@ -4,45 +4,55 @@ import { store } from "./store";
 import Profile from "./Profile";
 import Education from "./Education";
 import Skills from "./Skills";
-import Projects from "./Projects"; 
+import Projects from "./Projects";
 import SocialMedia from "./SocialMedia";
-import ResumePreview from "./ResumePreview"; 
+import ResumePreview from "./ResumePreview";
 import { nextPage, prevPage } from "./actions";
 
 const Form = () => {
   const dispatch = useDispatch();
-  const page = useSelector(state => state.currentPage);
+  const page = useSelector((state) => state.currentPage);
 
-  const renderPage = () => {
-    switch (page) {
-      case 1: return <Profile />;
-      case 2: return <Education />;
-      case 3: return <Skills />;
-      case 4: return <Projects />;
-      case 5: return <SocialMedia />;
-      case 6: return <ResumePreview />;
-      default: return <Profile />;
-    }
-  };
+  const sections = [
+    { id: 1, component: <Profile /> },
+    { id: 2, component: <Education /> },
+    { id: 3, component: <Skills /> },
+    { id: 4, component: <Projects /> },
+    { id: 5, component: <SocialMedia /> },
+    { id: 6, component: <ResumePreview /> },
+  ];
 
   return (
     <div>
-      {renderPage()}
+      {sections.map((section) => (
+        <div
+          key={section.id}
+          style={{ display: page === section.id ? "block" : "none" }}
+        >
+          {section.component}
+        </div>
+      ))}
+
       <div style={{ marginTop: "20px" }}>
-        {page > 1 && <button onClick={() => dispatch(prevPage())}>Back</button>}
-        {page < 6 && <button onClick={() => dispatch(nextPage())}>Next</button>}
+        {page > 1 && (
+          <button id="back" onClick={() => dispatch(prevPage())}>
+            Back
+          </button>
+        )}
+        {page < sections.length && (
+          <button id="next" onClick={() => dispatch(nextPage())}>
+            Next
+          </button>
+        )}
       </div>
     </div>
   );
 };
 
 const App = () => (
- <>
-  <h1>RESUME GENERATOR</h1>
   <Provider store={store}>
     <Form />
   </Provider>
-</>
 );
 
 export default App;
