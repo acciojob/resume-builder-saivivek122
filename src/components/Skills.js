@@ -1,32 +1,43 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { addSkill, deleteSkill } from "./actions";
 
-const Skills = () => {
-  const dispatch = useDispatch();
-  const skills = useSelector(state => state.skills);
+function Skills() {
+  const [skills, setSkills] = useState([]);
   const [skill, setSkill] = useState("");
 
-  const handleAdd = () => {
-    if(skill.trim() !== "") {
-      dispatch(addSkill(skill));
+  const handleAddSkill = () => {
+    if (skill.trim() !== "") {
+      setSkills([...skills, skill]);
       setSkill("");
     }
+  };
+
+  const handleDelete = (index) => {
+    setSkills(skills.filter((_, i) => i !== index));
   };
 
   return (
     <div>
       <h2>Skills</h2>
-      <input name="skill" data-testid="skill-input" placeholder="Skill" value={skill} onChange={(e) => setSkill(e.target.value)} />
-      <button id="add_skill" onClick={handleAdd}>Add Skill</button>
+      <input
+        id="skill"
+        name="skill"
+        placeholder="Skill"
+        value={skill}
+        onChange={e => setSkill(e.target.value)}
+        data-testid="skill-input"
+      />
+      <button id="add_skill" onClick={handleAddSkill}>Add Skill</button>
 
-     <ul>
-  {skills.map((s, i) => (
-    <li key={i} data-testid={`skill-${i}`}>{s} <button id="delete_skill" onClick={() => dispatch(deleteSkill(i))}>Delete</button></li>
-  ))}
-</ul>
+      <ul>
+        {skills.map((s, index) => (
+          <li key={index}>
+            {s}
+            <button id={`delete_skill_${index}`} onClick={() => handleDelete(index)}>Delete</button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
-};
+}
 
 export default Skills;
