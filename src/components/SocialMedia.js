@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { addSocial } from "./actions";
 
 const SocialMedia = () => {
@@ -18,12 +18,10 @@ const SocialMedia = () => {
     <div>
       <h2>Social Media</h2>
       <input name="Social" data-testid="social-input" placeholder="Social Media URL" value={link} onChange={(e) => setLink(e.target.value)} />
-      <button id="next" onClick={handleAdd}>Add Social</button>
+      <button id="add_social" onClick={handleAdd}>Add Social</button>
 
       <ul>
-        {social.map((s, i) => (
-          <li key={i}>{s}</li>
-        ))}
+        {social.map((s,i) => <li key={i}>{s}</li>)}
       </ul>
     </div>
   );
