@@ -16,7 +16,7 @@ const Education = () => {
 
   return (
     <div>
-      <h2>Education</h2>
+      <h2>Add your Education Details</h2>
       <input name="courseName" data-testid="courseName-input" placeholder="Course Name" value={form.courseName} onChange={handleChange} />
       <input name="completionYear" data-testid="completionYear-input" placeholder="Completion Year" value={form.completionYear} onChange={handleChange} />
       <input name="college" data-testid="college-input" placeholder="College" value={form.college} onChange={handleChange} />
