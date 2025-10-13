@@ -18,7 +18,7 @@ const Skills = () => {
     <div>
       <h2>Skills</h2>
       <input name="skill" placeholder="Skill" value={skill} onChange={(e) => setSkill(e.target.value)} />
-      <button id="add_skill" onClick={handleAdd}>Add Skill</button>
+      <button id="next" onClick={handleAdd}>Add Skill</button>
 
       <ul>
         {skills.map((s, i) => (
