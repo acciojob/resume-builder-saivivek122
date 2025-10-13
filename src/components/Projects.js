@@ -22,7 +22,7 @@ const Projects = () => {
       <input name="projectName" placeholder="Project Name" value={form.projectName} onChange={handleChange} />
       <input name="techStack" placeholder="Tech Stack" value={form.techStack} onChange={handleChange} />
       <input name="description" placeholder="Description" value={form.description} onChange={handleChange} />
-      <button id="add_project" onClick={handleAdd}>Add Project</button>
+      <button id="next" onClick={handleAdd}>Add Project</button>
 
       <ul>
         {projects.map((p, i) => (
