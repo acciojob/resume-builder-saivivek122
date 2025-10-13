@@ -37,9 +37,12 @@ const Form = () => {
 };
 
 const App = () => (
+ <>
+  <h1>RESUME GENERATOR</h1>
   <Provider store={store}>
     <Form />
   </Provider>
+</>
 );
 
 export default App;
