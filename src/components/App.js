@@ -1,36 +1,38 @@
-import React, { useState } from "react";
+import React from "react";
 import { Provider } from "react-redux";
-import { store } from "./resumeSlice";
+import { store } from "./store";
 import Profile from "./Profile";
 import Education from "./Education";
 import Skills from "./Skills";
 import Projects from "./Projects";
 import SocialMedia from "./SocialMedia";
 import ResumePreview from "./ResumePreview";
+import Navigation from "./Navigation";
+import { useSelector } from "react-redux";
 
 const App = () => {
-  const [page, setPage] = useState(1);
+  const currentPage = useSelector(state => state.resume.currentPage);
 
-  const nextPage = () => setPage((prev) => Math.min(prev + 1, 6));
-  const prevPage = () => setPage((prev) => Math.max(prev - 1, 1));
+  const renderPage = () => {
+    switch(currentPage) {
+      case 1: return <Profile />;
+      case 2: return <Education />;
+      case 3: return <Skills />;
+      case 4: return <Projects />;
+      case 5: return <SocialMedia />;
+      case 6: return <ResumePreview />;
+      default: return <Profile />;
+    }
+  }
 
   return (
     <Provider store={store}>
       <div>
-        {page === 1 && <Profile />}
-        {page === 2 && <Education />}
-        {page === 3 && <Skills />}
-        {page === 4 && <Projects />}
-        {page === 5 && <SocialMedia />}
-        {page === 6 && <ResumePreview />}
-
-        <div style={{ marginTop: 20 }}>
-          {page > 1 && <button onClick={prevPage}>Back</button>}
-          {page < 6 && <button onClick={nextPage}>Next</button>}
-        </div>
+        {renderPage()}
+        <Navigation />
       </div>
     </Provider>
   );
-};
+}
 
 export default App;
