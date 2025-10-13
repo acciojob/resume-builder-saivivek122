@@ -4,7 +4,7 @@ import { store } from "./store";
 import Profile from "./Profile"; 
 import Education from "./Education";
 import Skills from "./Skills"; 
-import Projects from "./Projects"; 
+import Projects from "./Projects";  
 import SocialMedia from "./SocialMedia";
 import ResumePreview from "./ResumePreview";
 import Navigation from "./Navigation";
