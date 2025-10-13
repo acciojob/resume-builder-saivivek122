@@ -20,7 +20,7 @@ const Profile = () => {
       <input name="phone" placeholder="Phone" value={form.phone || ""} onChange={handleChange} />
       <input name="address" placeholder="Address" value={form.address || ""} onChange={handleChange} />
       <input name="url" placeholder="Image URL" value={form.url || ""} onChange={handleChange} />
-      <button onClick={() => dispatch(saveProfile(form))}>Save & Continue</button>
+      <button id="next" onClick={() => dispatch(saveProfile(form))}>Save & Continue</button>
     </div>
   );
 };
