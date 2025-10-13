@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { addSkill, deleteSkill } from "./actions";
 
 const Skills = () => {
@@ -17,15 +17,11 @@ const Skills = () => {
   return (
     <div>
       <h2>Skills</h2>
-      <input name="skill" placeholder="Skill" value={skill} onChange={(e) => setSkill(e.target.value)} />
-      <button id="next" onClick={handleAdd}>Add Skill</button>
+      <input name="skill" data-testid="skill-input" placeholder="Skill" value={skill} onChange={(e) => setSkill(e.target.value)} />
+      <button id="add_skill" onClick={handleAdd}>Add Skill</button>
 
       <ul>
-        {skills.map((s, i) => (
-          <li key={i}>
-            {s} <button id="delete_skill" onClick={() => dispatch(deleteSkill(i))}>Delete</button>
-          </li>
-        ))}
+        {skills.map((s,i) => <li key={i}>{s} <button id="delete_skill" onClick={() => dispatch(deleteSkill(i))}>Delete</button></li>)}
       </ul>
     </div>
   );
