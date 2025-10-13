@@ -24,10 +24,16 @@ const Form = () => {
 
   return (
     <div>
+      <h1>RESUME GENERATOR</h1> {/* Heading for Cypress */}
+
       {sections.map((section) => (
         <div
           key={section.id}
-          style={{ display: page === section.id ? "block" : "none" }}
+          style={{
+            visibility: page === section.id ? "visible" : "hidden",
+            height: page === section.id ? "auto" : 0,
+            overflow: "hidden",
+          }}
         >
           {section.component}
         </div>
