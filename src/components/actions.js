@@ -1,34 +1,21 @@
 // Navigation
-export const NEXT_PAGE = "NEXT_PAGE";
-export const PREV_PAGE = "PREV_PAGE";
-export const SAVE_PAGE = "SAVE_PAGE";
+export const nextPage = () => ({ type: "NEXT_PAGE" });
+export const prevPage = () => ({ type: "PREV_PAGE" });
 
 // Profile
-export const SET_PROFILE = "SET_PROFILE";
+export const setProfile = (profile) => ({ type: "SET_PROFILE", payload: profile });
 
 // Education
-export const ADD_EDUCATION = "ADD_EDUCATION";
-export const DELETE_EDUCATION = "DELETE_EDUCATION";
+export const addEducation = (edu) => ({ type: "ADD_EDUCATION", payload: edu });
+export const deleteEducation = (index) => ({ type: "DELETE_EDUCATION", payload: index });
 
 // Skills
-export const ADD_SKILL = "ADD_SKILL";
-export const DELETE_SKILL = "DELETE_SKILL";
+export const addSkill = (skill) => ({ type: "ADD_SKILL", payload: skill });
+export const deleteSkill = (index) => ({ type: "DELETE_SKILL", payload: index });
 
 // Projects
-export const ADD_PROJECT = "ADD_PROJECT";
-export const DELETE_PROJECT = "DELETE_PROJECT";
+export const addProject = (project) => ({ type: "ADD_PROJECT", payload: project });
+export const deleteProject = (index) => ({ type: "DELETE_PROJECT", payload: index });
 
 // Social Media
-export const ADD_SOCIAL = "ADD_SOCIAL";
-
-// Action Creators
-export const nextPage = () => ({ type: NEXT_PAGE });
-export const prevPage = () => ({ type: PREV_PAGE });
-export const saveProfile = (data) => ({ type: SET_PROFILE, payload: data });
-export const addEducation = (data) => ({ type: ADD_EDUCATION, payload: data });
-export const deleteEducation = (index) => ({ type: DELETE_EDUCATION, payload: index });
-export const addSkill = (data) => ({ type: ADD_SKILL, payload: data });
-export const deleteSkill = (index) => ({ type: DELETE_SKILL, payload: index });
-export const addProject = (data) => ({ type: ADD_PROJECT, payload: data });
-export const deleteProject = (index) => ({ type: DELETE_PROJECT, payload: index });
-export const addSocial = (data) => ({ type: ADD_SOCIAL, payload: data });
+export const addSocial = (link) => ({ type: "ADD_SOCIAL", payload: link });
