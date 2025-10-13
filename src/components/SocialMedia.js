@@ -20,9 +20,9 @@ const SocialMedia = () => {
       <input name="Social" data-testid="social-input" placeholder="Social Media URL" value={link} onChange={(e) => setLink(e.target.value)} />
       <button id="add_social" onClick={handleAdd}>Add Social</button>
 
-      <ul>
-        {social.map((s,i) => <li key={i}>{s}</li>)}
-      </ul>
+     <ul>
+  {social.map((s,i) => <li key={i} data-testid={`social-${i}`}>{s}</li>)}
+</ul>
     </div>
   );
 };
