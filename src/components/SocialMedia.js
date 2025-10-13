@@ -18,7 +18,7 @@ const SocialMedia = () => {
     <div>
       <h2>Social Media</h2>
       <input name="Social" placeholder="Social Media URL" value={link} onChange={(e) => setLink(e.target.value)} />
-      <button id="add_social" onClick={handleAdd}>Add Social</button>
+      <button id="next" onClick={handleAdd}>Add Social</button>
 
       <ul>
         {social.map((s, i) => (
