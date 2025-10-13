@@ -1,30 +1,43 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { addSocial } from "./actions";
 
-const SocialMedia = () => {
-  const dispatch = useDispatch();
-  const social = useSelector(state => state.social);
-  const [link, setLink] = useState("");
+function SocialMedia() {
+  const [links, setLinks] = useState([]);
+  const [social, setSocial] = useState("");
 
-  const handleAdd = () => {
-    if(link.trim() !== "") {
-      dispatch(addSocial(link));
-      setLink("");
+  const handleAddSocial = () => {
+    if (social.trim() !== "") {
+      setLinks([...links, social]);
+      setSocial("");
     }
+  };
+
+  const handleDelete = (index) => {
+    setLinks(links.filter((_, i) => i !== index));
   };
 
   return (
     <div>
       <h2>Social Media</h2>
-      <input name="Social" data-testid="social-input" placeholder="Social Media URL" value={link} onChange={(e) => setLink(e.target.value)} />
-      <button id="add_social" onClick={handleAdd}>Add Social</button>
+      <input
+        id="social"
+        name="Social"
+        placeholder="Social Media URL"
+        value={social}
+        onChange={e => setSocial(e.target.value)}
+        data-testid="social-input"
+      />
+      <button id="add_social" onClick={handleAddSocial}>Add</button>
 
-     <ul>
-  {social.map((s,i) => <li key={i} data-testid={`social-${i}`}>{s}</li>)}
-</ul>
+      <ul>
+        {links.map((link, index) => (
+          <li key={index}>
+            {link}
+            <button id={`delete_social_${index}`} onClick={() => handleDelete(index)}>Delete</button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
-};
+}
 
 export default SocialMedia;
