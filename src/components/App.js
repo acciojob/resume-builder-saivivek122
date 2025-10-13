@@ -1,7 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { store } from "./store";
-import Profile from "./Profile";
+import Profile from "./Profile"; 
 import Education from "./Education";
 import Skills from "./Skills"; 
 import Projects from "./Projects"; 
