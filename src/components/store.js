@@ -1,8 +1,7 @@
-import { configureStore } from "@reduxjs/toolkit";
-import resumeReducer from "./resumeSlice";
+import { createStore } from "redux";
+import { reducer } from "./reducers";
 
-export const store = configureStore({
-  reducer: {
-    resume: resumeReducer,
-  },
-});
+export const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
