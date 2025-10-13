@@ -15,7 +15,7 @@ const Projects = () => {
 
   return (
     <div>
-      <h2>Mini Projects</h2>
+      <h2>Add your Mini Projects</h2>
       <input name="projectName" data-testid="projectName-input" placeholder="Project Name" value={form.projectName} onChange={handleChange} />
       <input name="techStack" data-testid="techStack-input" placeholder="Tech Stack" value={form.techStack} onChange={handleChange} />
       <input name="description" data-testid="description-input" placeholder="Description" value={form.description} onChange={handleChange} />
