@@ -1,23 +1,28 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { updateProfile } from "./resumeSlice";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { saveProfile } from "./actions";
 
 const Profile = () => {
-  const profile = useSelector((state) => state.resume.profile);
   const dispatch = useDispatch();
+  const profile = useSelector(state => state.profile);
+
+  const [form, setForm] = useState(profile);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    dispatch(updateProfile({ [name]: value }));
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   return (
     <div>
       <h2>Profile</h2>
-      <input name="fname" value={profile.fname} onChange={handleChange} placeholder="First Name" />
-      <input name="lname" value={profile.lname} onChange={handleChange} placeholder="Last Name" />
-      <input name="phone" value={profile.phone} onChange={handleChange} placeholder="Phone" />
-      <input name="address" value={profile.address} onChange={handleChange} placeholder="Address" />
-      <input name="url" value={profile.url} onChange={handleChange} placeholder="Profile Image URL" />
+      <input name="fname" placeholder="First Name" value={form.fname || ""} onChange={handleChange} />
+      <input name="lname" placeholder="Last Name" value={form.lname || ""} onChange={handleChange} />
+      <input name="phone" placeholder="Phone" value={form.phone || ""} onChange={handleChange} />
+      <input name="address" placeholder="Address" value={form.address || ""} onChange={handleChange} />
+      <input name="url" placeholder="Image URL" value={form.url || ""} onChange={handleChange} />
+      <button onClick={() => dispatch(saveProfile(form))}>Save & Continue</button>
     </div>
   );
+};
+
+export default Profile;
