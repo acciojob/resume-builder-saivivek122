@@ -1,20 +1,20 @@
 import React from "react";
-import { Provider } from "react-redux";
+import { Provider, useSelector, useDispatch } from "react-redux";
 import { store } from "./store";
-import Profile from "./Profile"; 
+import Profile from "./Profile";
 import Education from "./Education";
-import Skills from "./Skills"; 
-import Projects from "./Projects";  
+import Skills from "./Skills";
+import Projects from "./Projects";
 import SocialMedia from "./SocialMedia";
 import ResumePreview from "./ResumePreview";
-import Navigation from "./Navigation";
-import { useSelector } from "react-redux";
+import { nextPage, prevPage } from "./actions";
 
-const App = () => {
-  const currentPage = useSelector(state => state.resume.currentPage);
+const Form = () => {
+  const dispatch = useDispatch();
+  const page = useSelector(state => state.currentPage);
 
   const renderPage = () => {
-    switch(currentPage) {
+    switch (page) {
       case 1: return <Profile />;
       case 2: return <Education />;
       case 3: return <Skills />;
@@ -23,16 +23,23 @@ const App = () => {
       case 6: return <ResumePreview />;
       default: return <Profile />;
     }
-  }
+  };
 
   return (
-    <Provider store={store}>
-      <div>
-        {renderPage()}
-        <Navigation />
+    <div>
+      {renderPage()}
+      <div style={{ marginTop: "20px" }}>
+        {page > 1 && <button onClick={() => dispatch(prevPage())}>Back</button>}
+        {page < 6 && <button onClick={() => dispatch(nextPage())}>Next</button>}
       </div>
-    </Provider>
+    </div>
   );
-}
+};
+
+const App = () => (
+  <Provider store={store}>
+    <Form />
+  </Provider>
+);
 
 export default App;
