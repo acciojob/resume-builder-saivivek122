@@ -6,7 +6,7 @@ import Education from "./Education";
 import Skills from "./Skills"; 
 import Projects from "./Projects";  
 import SocialMedia from "./SocialMedia";  
-import ResumePreview from "./ResumePreview";
+import ResumePreview from "./ResumePreview"; 
 import { nextPage, prevPage } from "./actions"; 
 
 const Form = () => {
