@@ -20,9 +20,11 @@ const Skills = () => {
       <input name="skill" data-testid="skill-input" placeholder="Skill" value={skill} onChange={(e) => setSkill(e.target.value)} />
       <button id="add_skill" onClick={handleAdd}>Add Skill</button>
 
-      <ul>
-        {skills.map((s,i) => <li key={i}>{s} <button id="delete_skill" onClick={() => dispatch(deleteSkill(i))}>Delete</button></li>)}
-      </ul>
+     <ul>
+  {skills.map((s, i) => (
+    <li key={i} data-testid={`skill-${i}`}>{s} <button id="delete_skill" onClick={() => dispatch(deleteSkill(i))}>Delete</button></li>
+  ))}
+</ul>
     </div>
   );
 };
