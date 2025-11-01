@@ -1,27 +1,82 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setProfile } from "./actions";
+import { connect } from "react-redux";
+import { updateProfile } from "../actions";
 
-const Profile = () => {
-  const dispatch = useDispatch();
-  const profile = useSelector(state => state.profile);
+const Profile = ({ profile, updateProfile }) => {
+  const [formData, setFormData] = useState(profile);
 
-  const [form, setForm] = useState(profile);
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-  const handleChange = (e) => setForm({...form, [e.target.name]: e.target.value});
-  const handleSave = () => dispatch(setProfile(form));
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateProfile(formData);
+  };
 
   return (
-    <div>
-      <h2>Add your profile details</h2>
-      <input name="fname" data-testid="fname-input" placeholder="First Name" value={form.fname || ""} onChange={handleChange} />
-      <input name="lname" data-testid="lname-input" placeholder="Last Name" value={form.lname || ""} onChange={handleChange} />
-      <input name="phone" data-testid="phone-input" placeholder="Phone" value={form.phone || ""} onChange={handleChange} />
-      <input name="address" data-testid="address-input" placeholder="Address" value={form.address || ""} onChange={handleChange} />
-      <input name="url" data-testid="url-input" placeholder="Profile Image URL" value={form.url || ""} onChange={handleChange} />
-      <button id="save_continue" onClick={handleSave}>Save</button>
+    <div className="profile-section">
+      <h2>Profile Information</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>First Name:</label>
+          <input
+            type="text"
+            name="fname"
+            value={formData.fname}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Last Name:</label>
+          <input
+            type="text"
+            name="lname"
+            value={formData.lname}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Phone:</label>
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Address:</label>
+          <textarea
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Image URL:</label>
+          <input
+            type="url"
+            name="url"
+            value={formData.url}
+            onChange={handleChange}
+          />
+        </div>
+        <button type="submit">Save</button>
+      </form>
     </div>
   );
 };
 
-export default Profile;
+const mapStateToProps = (state) => ({
+  profile: state.resume.profile,
+});
+
+export default connect(mapStateToProps, { updateProfile })(Profile);
